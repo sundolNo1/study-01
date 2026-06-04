@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"$(date) hook fired\" >> /tmp/claude-hook-check.txt; file=$(jq -r '.tool_input.file_path // empty'); if [ -n \"$file\" ] && [ -f \"$file\" ]; then git add \"$file\" && git diff --cached --quiet && true || (git commit -m \"Auto-save: $(basename \\\"$file\\\")\" && git push origin main); fi",
+            "command": "file=$(jq -r '.tool_input.file_path // empty'); if [ -n \"$file\" ] && [ -f \"$file\" ]; then git add \"$file\" && git diff --cached --quiet && true || (git commit -m \"Auto-save: $(basename \\\"$file\\\")\" && git push origin main); fi",
             "timeout": 30,
             "statusMessage": "GitHub에 자동 저장 중..."
           }
